@@ -13,6 +13,7 @@ class Network(object):
         self.biases = [np.random.randn(y, 1) for y in sizeOfNetworkList[1:]]
         self.weights = [np.random.randn(y, x)
                         for x, y in zip(sizeOfNetworkList[:-1], sizeOfNetworkList[1:])]
+        self.accuracy = round(0.00,2)
 
     def feedforward(self, a):
         """Return the output of the network if ``a`` is input."""
@@ -44,6 +45,7 @@ class Network(object):
             if test_data:
                 print ("Epoch {0}: {1} / {2}".format(
                     j, self.evaluate(test_data), n_test))
+                self.accuracy = round(self.evaluate(test_data)/n_test,3)
             else:
                 print ("Epoch {0} complete".format(j))
 
